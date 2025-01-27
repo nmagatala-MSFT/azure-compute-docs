@@ -90,9 +90,9 @@ On an NVv5-V710 GPU Linux instance running Ubuntu 22.04 OS, run the update:
 $ sudo apt update
 ```
 
-## 3.5 Blacklist amdgpu Driver
+## 3.5 Blacklist AMD GPU Driver
 
-To install the latest AMD Linux driver, it's crucial to blacklist the default AMDGPU driver found in Linux OS distributions such as Ubuntu or RHEL. The default AMDGPU driver in Linux OS distributions isn't certified for use with the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance. This Linux driver, on the other hand, is optimized explicitly for Azure NVv5-V710 GPU Linux workloads. Follow the steps below to blacklist the driver: 
+To install the latest AMD Linux driver, it's crucial to blacklist the default AMD GPU driver found in Linux OS distributions such as Ubuntu or RHEL. The default AMD GPU driver in Linux OS distributions isn't certified for use with the AMD Radeon™ PRO V710 GPU on an NVv5-V710 GPU Linux instance. This Linux driver, on the other hand, is optimized explicitly for Azure NVv5-V710 GPU Linux workloads. Follow the steps below to blacklist the driver: 
 
 Open/etc/modprobe.d/blacklist.conf file and append the following line:
 
@@ -107,7 +107,7 @@ $ sudo update-initramfs -uk all
 
 ## 3.6 Reboot
 
-After restarting the Virtual Machine, the default AMDGPU driver in Ubuntu Linux distributions shouldn’t load because we had blacklisted it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver is still loaded, go back to the previous step to double-check that the amdgpu driver has been blacklisted correctly.
+After restarting the Virtual Machine, the default AMD GPU driver in Ubuntu Linux distributions shouldn’t load because we had blacklisted it. To confirm that the driver isn't loaded, run the command "lsmod | grep amdgpu" to check if the amdgpu driver is loaded. If there's no output, the driver isn't loaded, and you can proceed. However, if the driver is still loaded, go back to the previous step to double-check that the amdgpu driver has been blacklisted correctly.
 
 # 4. AMD Driver Installation
 
@@ -134,13 +134,13 @@ sudo amdgpu-install --usecase=rocm
 
 Note: If needed, this can be used to create a script to automate the installation process.
 
-# 4.2 Load amdgpu driver
+# 4.2 Load AMD GPU driver
 
 ```bash
 $ sudo modprobe amdgpu
 ```
 
-Note: The amdgpu driver will need to be loaded on every boot.
+Note: The AMD GPU driver will need to be loaded on every boot.
 
 Review the output of **" dmesg | grep amdgpu "** to confirm that the GPU driver is loaded and initialized successfully.
 
